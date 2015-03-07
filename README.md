@@ -1,20 +1,16 @@
-Drupal 7 yamoney module
-=======================
+##Y.CMS Drupal 7
 
-### Overview
+Модуль оплаты Y.CMS Drupal 7 необходим для интеграции с сервисом [Яндекс.Касса](http://kassa.yandex.ru/). Для его работы требуется один из следующих модулей:
+* [Drupal commerce](https://www.drupal.org/project/commerce)
+* [Drupal ubercart](https://www.drupal.org/project/ubercart)
 
-Integrate Yandex.Money service with the following Drupal 7 modules:
-* Drupal Commerce
-* Ubercart
+> Доступные платежные методы, если вы работаете как юридические лицо:
+>* **Банковские карты** -  Visa (включая Electron), MasterCard и Maestro любого банка мира
+>* **Электронные деньги** - Яндекс.Деньги и WebMoney
+>* **Наличные** - [Более 170 тысяч пунктов](https://money.yandex.ru/pay/doc.xml?id=526209) оплаты по России
+>* **Баланс телефона** - Билайн, МегаФон и МТС
+>* **Интернет банкинг** - Альфа-Клик и Сбербанк Онлайн
+>
 
-Also provides donation block.
-
-Note: Ubercart integration has not been tested enough.
-Note: Donation block need to be upgraded (does not work now)
-
-### Todo
-
-* Readme
-* Log errors and payments to watchdog
-* Test Ubercart integration
-* Fix Donate module
+###Нашли ошибку или у вас есть предложение по улучшению модуля?
+Пишите нам cms@yamoney.ru
