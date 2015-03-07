@@ -54,7 +54,7 @@ function yamoney_menu() {
 
   // Config page
   $items['admin/config/system/yamoney'] = array(
-    'title' => 'Yandex.Money API',
+    'title' => 'Yandex.Money Core',
     'description' => 'Yandex.Money base settings page.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('yamoney_admin_settings'),
