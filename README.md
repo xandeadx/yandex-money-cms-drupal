@@ -14,9 +14,16 @@
 * компонент commerce или ubercart.
 
 ###Установка модуля
-Для установки данного модуля необходимо распаковать содержимое [архива](https://github.com/yandex-money/yandex-money-cms-drupal/archive/master.zip) в папку `/sites/all/modules` вашего сайта!
+Для установки данного модуля необходимо распаковать содержимое [архива](https://github.com/yandex-money/yandex-money-cms-drupal/archive/master.zip) в папку `/sites/all/modules` вашего сайта и активировать модули из административной панели.
+Далее рекомендуем следовать пунктам [инструкции](http://kassa.yandex.ru/files/drupal.pdf).
+
+Внимание! Модуль еще не тестировался с Ubercart. Необходима доработка модуля Donate (сейчас не работает).
 
 Пожалуйста, обязательно делайте бекапы!
+
+###Список дел
+- [ ] Test Ubercart integration
+- [ ] Fix Donate module
 
 ###Нашли ошибку или у вас есть предложение по улучшению модуля?
 Пишите нам cms@yamoney.ru
