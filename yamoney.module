@@ -418,7 +418,7 @@ function yamoney_get_quick_params(YAMoneyTransaction $transaction) {
   $params['targets'] = t('Payments for order No') . $transaction->order_id;
   $params['sum'] = $transaction->amount;
   $params['quickpay-form'] = 'shop';
-  $params['payment-type'] = variable_get('yamoney_default_payment_method', YAMONEY_DEFAULT_PAYMENT_METHOD);
+  $params['paymentType'] = variable_get('yamoney_default_payment_method', YAMONEY_DEFAULT_PAYMENT_METHOD);
   $params['cms_name'] = 'drupal';
 
   drupal_alter('yamoney_quick_params', $params);

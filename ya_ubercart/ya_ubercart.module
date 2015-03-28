@@ -92,7 +92,7 @@ function ya_ubercart_yamoney_shop_params_alter(&$params) {
  */
 function ya_ubercart_yamoney_quick_params_alter(&$params) {
   // Selected payment method
-  $params['payment-type'] = $_SESSION['pay_method'];
+  $params['paymentType'] = $_SESSION['pay_method'];
 }
 
 /**
