@@ -219,7 +219,7 @@ function ya_commerce_yamoney_quick_params_alter(&$params) {
   $order = commerce_order_load($params['order_id']);
 
   // Selected payment method
-  $params['payment-type'] = $order->data['ya_commerce']['payment_method'];
+  $params['paymentType'] = $order->data['ya_commerce']['payment_method'];
 }
 
 /**
