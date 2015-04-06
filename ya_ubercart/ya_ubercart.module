@@ -40,7 +40,7 @@ function ya_ubercart_form($form, &$form_state, $order) {
   $transaction = new YAMoneyTransaction();
   $transaction->uid = $user->uid;
   $transaction->amount = $order->order_total;
-  $transaction->mail = $user->mail ? $user->mail : $order->primary_email;
+  $transaction->mail = isset($user->mail) ? $user->mail : $order->primary_email;
   $transaction->order_id = $order->order_id;
   if (!yamoney_transaction_save($transaction)) {
     $error_message = t('Can not save transaction.');
