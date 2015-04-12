@@ -309,13 +309,15 @@ function yamoney_check_send_result($type, $code = 0, $message = '') {
  */
 function yamoney_get_payment_methods() {
   return array(
-    'PC' => t('Yandex money'),
-    'AC' => t('Credit card'),
-    'GP' => t('Pay terminal'),
-    'MC' => t('Mobile phone'),
-    'WM' => t('WebMoney'),
-    'AB' => t('Alpha-Click'),
-    'SB' => t('SberBank Online'),
+    'PC' => t('Оплата из кошелька в Яндекс.Деньгах'),
+    'AC' => t('Оплата с произвольной банковской карты'),
+    'GP' => t('Оплата наличными через кассы и терминалы'),
+    'MC' => t('Платеж со счета мобильного телефона'),
+    'WM' => t('Оплата из кошелька в системе WebMoney'),
+    'AB' => t('Оплата через Альфа-Клик'),
+    'SB' => t('Оплата через Сбербанк: оплата по SMS или Сбербанк Онлайн'),
+	 'MA' => t('Оплата через MasterPass'),
+	 'PB' => t('Оплата через интернет-банк Промсвязьбанка'),
   );
 }
 
