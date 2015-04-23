@@ -255,7 +255,7 @@ function yamoney_check_payment() {
     yamoney_check_send_result('paymentAvisoResponse', YAMONEY_CHECK_RESULT_CODE_ERROR_CUSTOM, 'Invalid transaction_id provided.');
   }
 
-  if ($transaction->status !== YAMoneyTransaction::STATUS_PROCESSED) {
+  if ($transaction->status !== YAMoneyTransaction::STATUS_PROCESSED && $transaction->status !== YAMoneyTransaction::STATUS_PAYED) {
     yamoney_check_send_result('paymentAvisoResponse', YAMONEY_CHECK_RESULT_CODE_ERROR_CUSTOM,
       'Invalid transaction state: ' . $transaction->status . '. Expected: ' . YAMoneyTransaction::STATUS_PROCESSED . '.');
   }
@@ -272,7 +272,7 @@ function yamoney_check_payment() {
     yamoney_check_send_result('paymentAvisoResponse', YAMONEY_CHECK_RESULT_CODE_ERROR_CUSTOM, $error);
   }
 
-  if (yamoney_update_transaction_status($transaction->ymid, YAMoneyTransaction::STATUS_PAYED)) {
+  if ($transaction->status === YAMoneyTransaction::STATUS_PAYED || yamoney_update_transaction_status($transaction->ymid, YAMoneyTransaction::STATUS_PAYED)) {
     yamoney_check_send_result('paymentAvisoResponse');
   }
   else {
