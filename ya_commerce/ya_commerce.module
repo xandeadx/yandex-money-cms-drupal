@@ -10,7 +10,7 @@ function ya_commerce_commerce_payment_method_info() {
     'path' => drupal_get_path('module', 'ya_commerce') . '/images/yandex-logo.png',
     'attributes' => array('class' => array('ya-commerce-logo')),
   ));
-  $display_title = t('Яндекс.Касса') . '<br/>' . $icon;
+  $display_title = t('Yandex.Kassa') . '<br/>' . $icon;
 
   $payment_methods['ya_commerce'] = array(
     'base' => 'ya_commerce',

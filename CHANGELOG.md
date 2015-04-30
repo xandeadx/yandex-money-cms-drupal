@@ -1,3 +1,10 @@
+### 29.04.2015
+* Added support multilanguage (English, Russian)
+* Update icons
+
+### 23.04.2015
+* Fixed repeated paymentAviso calls incorrect answer, when the order status was
+STATUS_PAYED
 
 ### 04.07.2014
 * Fixed payments by anonymous users

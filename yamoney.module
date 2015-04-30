@@ -54,8 +54,8 @@ function yamoney_menu() {
 
   // Config page
   $items['admin/config/system/yamoney'] = array(
-    'title' => 'Yandex.Money Core',
-    'description' => 'Yandex.Money base settings page.',
+    'title' => t('Yandex.Money Core'),
+    'description' => t('Yandex.Money base settings page.'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('yamoney_admin_settings'),
     'access arguments' => array('access yamoney settings'),
@@ -65,8 +65,8 @@ function yamoney_menu() {
 
   // Transactions page menu
   $items['admin/reports/yamoney_transactions'] = array(
-    'title' => 'Yandex.Money transactions',
-    'description' => 'Yandex.Money all transactions page.',
+    'title' => t('Yandex.Money transactions'),
+    'description' => t('Yandex.Money all transactions page.'),
     'page callback' => 'yamoney_transactions_page',
     'access arguments' => array('access yandex money transaction'),
     'type' => MENU_NORMAL_ITEM,
@@ -75,8 +75,8 @@ function yamoney_menu() {
 
   // Account transaction table
   $items['user/%user/yamoney_payments'] = array(
-    'title' => 'My transactions',
-    'description' => 'Yandex money user transactions page.',
+    'title' => t('My transactions'),
+    'description' => t('Yandex money user transactions page.'),
     'page callback' => 'yamoney_transactions_user_page',
     'page arguments' => array(1),
     'access arguments' => array('access own yandex money transaction'),
@@ -309,15 +309,15 @@ function yamoney_check_send_result($type, $code = 0, $message = '') {
  */
 function yamoney_get_payment_methods() {
   return array(
-    'PC' => t('Оплата из кошелька в Яндекс.Деньгах'),
-    'AC' => t('Оплата с произвольной банковской карты'),
-    'GP' => t('Оплата наличными через кассы и терминалы'),
-    'MC' => t('Платеж со счета мобильного телефона'),
-    'WM' => t('Оплата из кошелька в системе WebMoney'),
-    'AB' => t('Оплата через Альфа-Клик'),
-    'SB' => t('Оплата через Сбербанк: оплата по SMS или Сбербанк Онлайн'),
-	 'MA' => t('Оплата через MasterPass'),
-	 'PB' => t('Оплата через интернет-банк Промсвязьбанка'),
+    'PC' => t('Payment from a Yandex.Money e-wallet'),
+    'AC' => t('Payment by any bank card'),
+    'GP' => t('Payment in cash via retailers and payment kiosks'),
+    'MC' => t('Payment from a mobile phone balance'),
+    'WM' => t('Payment from a WebMoney e-wallet'),
+    'AB' => t('Payment via Alfa-Click'),
+    'SB' => t('Payment via Sberbank: payment by text messages or Sberbank Online'),
+	 'MA' => t('Payment via MasterPass'),
+	 'PB' => t('Payment via Promsvyazbank'),
   );
 }
 
