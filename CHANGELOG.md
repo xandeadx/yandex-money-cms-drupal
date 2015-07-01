@@ -1,3 +1,6 @@
+### 01.07.2015
+* Added statistics
+
 ### 29.04.2015
 * Added support multilanguage (English, Russian)
 * Update icons

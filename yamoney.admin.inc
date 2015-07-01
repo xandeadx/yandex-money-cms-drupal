@@ -119,9 +119,60 @@ function yamoney_admin_settings() {
     '#default_value' => $fail['value'] ? $fail['value'] : '',
     '#format' => $fail['format'] ? $fail['format'] : '',
   );
+  $form['#submit'][]='send_statistics';
   return system_settings_form($form);
 }
+/**
+ * @param array $form
+ * @param array $form_state
+ */
+function send_statistics($form, &$form_state) {
+		global $base_url;
+		$path = drupal_get_path('module', 'yamoney') . '/' . 'yamoney.info';
+		$info = drupal_parse_info_file($path);
+		$headers = array();
+		$headers[] = 'Content-Type: application/x-www-form-urlencoded';
+		$form_data=$form_state['input'];
+		$array = array(
+			'url' => $base_url,
+			'cms' => 'drupal',
+			'version' => VERSION,
+			'ver_mod' => $info['version'],
+			'yacms' => false,
+			'email' => variable_get('site_mail', ''),
+			'shopid' => (isset($form_data['yamoney_shop_id']))?$form_data['yamoney_shop_id']:0,
+			'settings' => array(
+				'kassa' => (isset($form_data['yamoney_shop']))?true:false,
+				'p2p' => (isset($form_data['yamoney_shop']))?false:true
+			)
+		);
 
+		$key_crypt = gethostbyname($_SERVER['HTTP_HOST']);
+		$crypto= new Crypto();
+		$crypto->setKey($key_crypt);
+		$array_crypt = $crypto->encrypt($array);
+
+		$url = 'https://statcms.yamoney.ru/';
+		$curlOpt = array(
+			CURLOPT_HEADER => false,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
+			CURLINFO_HEADER_OUT => true,
+			CURLOPT_POST => true,
+		);
+
+		$curlOpt[CURLOPT_HTTPHEADER] = $headers;
+		$curlOpt[CURLOPT_POSTFIELDS] = http_build_query(array('data' => $array_crypt));
+
+		$curl = curl_init($url);
+		curl_setopt_array($curl, $curlOpt);
+		$rbody = curl_exec($curl);
+		$errno = curl_errno($curl);
+		$error = curl_error($curl);
+		$rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		curl_close($curl);
+}
 /**
  * @param array $form
  * @param array $form_state
@@ -145,4 +196,46 @@ function yamoney_admin_settings_validate($form, &$form_state) {
       }
     }
   }
+}
+
+class Crypto {
+	protected $key = '';
+	protected $cipher = MCRYPT_RIJNDAEL_256;
+	protected $cipher_mode = MCRYPT_MODE_CBC;
+
+	public function setKey($key)
+	{
+		$this->key = hash('sha256', $key, true);
+	}
+
+	public function encrypt($data)
+	{
+		$data = serialize($data);
+		$init_size = mcrypt_get_iv_size($this->cipher, $this->cipher_mode);
+		$init_vect = mcrypt_create_iv($init_size, MCRYPT_RAND);
+		$str = $this->randomString(strlen($this->key)).$init_vect.mcrypt_encrypt($this->cipher, $this->key, $data, $this->cipher_mode, $init_vect);
+		return base64_encode($str);
+	}
+
+	public function decrypt($data)
+	{
+		$data = base64_decode($data);
+		$data = substr($data, strlen($this->key));
+		$init_size = mcrypt_get_iv_size($this->cipher, $this->cipher_mode);
+		$init_vect = substr($data, 0, $init_size);
+		$data = substr($data, $init_size);
+		$str = mcrypt_decrypt($this->cipher, $this->key, $data, $this->cipher_mode, $init_vect);
+		return unserialize($str);
+	}
+
+	protected function randomString($len)
+	{
+		$str = '';
+		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$pool_len = strlen($pool);
+		for ($i = 0; $i < $len; $i++) {
+			$str .= substr($pool, mt_rand(0, $pool_len - 1), 1);
+		}
+		return $str;
+	}
 }
