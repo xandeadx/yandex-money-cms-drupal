@@ -1,3 +1,6 @@
+### 02.08.2015
+* Fix bugs with success url
+
 ### 01.07.2015
 * Added statistics
 

@@ -10,7 +10,8 @@ function yamoney_admin_settings() {
   $form['yamoney_all'] = array(
     '#type' => 'fieldset',
     '#title' => t('Base options'),
-  );
+	 '#description' => t('Любое использование Вами программы означает полное и безоговорочное принятие Вами условий лицензионного договора, размещенного по адресу <a href="https://money.yandex.ru/doc.xml?id=527132">https://money.yandex.ru/doc.xml?id=527132</a> (далее – «Лицензионный договор»). Если Вы не принимаете условия Лицензионного договора в полном объёме, Вы не имеете права использовать программу в каких-либо целях.')
+  );  
   $form['yamoney_all']['yamoney_ip'] = array(
     '#type' => 'textarea',
     '#title' => t('Allowed IPs for callbacks'),
@@ -105,14 +106,14 @@ function yamoney_admin_settings() {
     '#type' => 'fieldset',
     '#title' => t('Text for success and fail payment pages'),
   );
-  $success = variable_get('yamoney_success_text', '');
+  $success = variable_get('yamoney_success_text', array('value' => '', 'format' => ''));
   $form['yamoney_texts']['yamoney_success_text'] = array(
     '#type' => 'text_format',
     '#title' => t('Text for success page'),
     '#default_value' => $success['value'] ? $success['value'] : '',
     '#format' => $success['format'] ? $success['format'] : '',
   );
-  $fail = variable_get('yamoney_fail_text', '');
+  $fail = variable_get('yamoney_fail_text', array('value' => '', 'format' => ''));
   $form['yamoney_texts']['yamoney_fail_text'] = array(
     '#type' => 'text_format',
     '#title' => t('Text for fail page'),

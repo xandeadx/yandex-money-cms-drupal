@@ -382,7 +382,7 @@ function yamoney_get_shop_params(YAMoneyTransaction $transaction) {
   $params['orderNumber'] = $transaction->order_id;
 
   // URL, на который должен быть осуществлен редирект в случае успеха перевода (urlencoded значение).
-  $params['shopSuccessURL'] = url('yamoney/success', array('absolute' => TRUE));
+  $params['shopSuccessURL'] = url('yamoney/complete', array('absolute' => TRUE));
 
   // URL, на который должен быть осуществлен редирект в случае ошибки (urlencoded значение).
   $params['shopFailURL'] = url('yamoney/fail', array('absolute' => TRUE));
