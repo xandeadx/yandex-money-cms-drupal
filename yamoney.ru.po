@@ -214,6 +214,14 @@ msgstr "Оплата через MasterPass"
 msgid "Payment via Promsvyazbank"
 msgstr "Оплата через интернет-банк Промсвязьбанка"
 
+#: yamoney.module:321
+msgid "Payment via QIWI Wallet"
+msgstr "Оплата через QIWI Wallet"
+
+#: yamoney.module:322
+msgid "Trust payment (Qppi.ru)"
+msgstr "Оплата через доверительный платеж (Куппи.ру)"
+
 #: transactions.inc:144
 msgid "Transactions"
 msgstr "Транзакции"

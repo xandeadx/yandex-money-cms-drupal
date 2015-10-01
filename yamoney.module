@@ -318,6 +318,8 @@ function yamoney_get_payment_methods() {
     'SB' => t('Payment via Sberbank: payment by text messages or Sberbank Online'),
 	 'MA' => t('Payment via MasterPass'),
 	 'PB' => t('Payment via Promsvyazbank'),
+	 'QW' => t('Payment via QIWI Wallet'),
+	 'QP' => t('Trust payment (Qppi.ru)'),
   );
 }
 
