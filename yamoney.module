@@ -419,6 +419,8 @@ function yamoney_get_quick_params(YAMoneyTransaction $transaction) {
   $params['writable-targets'] = FALSE;
   $params['comment-needed'] = FALSE;
   $params['label'] = $transaction->order_id;
+  $params['order_id'] = (int) $transaction->order_id;
+  $params['successUrl'] = url('yamoney/complete', array('absolute' => TRUE));
   $params['targets'] = t('Payments for order No') . $transaction->order_id;
   $params['sum'] = $transaction->amount;
   $params['quickpay-form'] = 'shop';
