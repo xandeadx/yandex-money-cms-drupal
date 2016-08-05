@@ -1,126 +1,145 @@
+# $Id$
+#
+# Russian translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  yamoney.admin.inc: n/a
+#  yamoney.module: n/a
+#  yamoney.info: n/a
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: yandex-money-cms-drupal\n"
-"POT-Creation-Date: 2015-04-29 20:12+0300\n"
-"PO-Revision-Date: 2015-04-30 09:30+0300\n"
-"Last-Translator: \n"
-"Language-Team:  <cms@yamoney.ru>\n"
-"Language: ru\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2016-08-04 16:11+0300\n"
+"PO-Revision-Date: 2016-08-04 16:25+0300\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: t\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"Language: ru\n"
+"X-Generator: Poedit 1.8.8\n"
 
-#: ya_commerce/ya_commerce.module:13
-msgid "Yandex.Kassa"
-msgstr "Яндекс.Касса"
+#: yamoney.admin.inc:11
+msgid "Base options"
+msgstr "Основные настройки"
 
-#: ya_commerce/ya_commerce.module:17
-msgid "Yandex.Money"
-msgstr "Яндекс.Деньги"
-
-#: ya_commerce/ya_commerce.module:18
-msgid "Yandex"
-msgstr "Яндекс"
-
-#: ya_commerce/ya_commerce.module:20
-msgid "Integration with Yandex.Money."
-msgstr "Интеграция с Яндекс.Деньги"
-
-#: ya_commerce/ya_commerce.module:36
-msgid "Widget type"
-msgstr "Тип виджета"
-
-#: ya_commerce/ya_commerce.module:73 ya_commerce/ya_commerce.module:87
-#: ya_commerce/ya_commerce.module:115 ya_ubercart/ya_ubercart.module:117
-msgid "Select your payment type:"
-msgstr "Выбрать тип оплаты:"
-
-#: ya_commerce/ya_commerce.module:154 ya_ubercart/ya_ubercart.module:46
-msgid "Can not save transaction."
-msgstr "Невозможно сохранить транзакцию."
-
-#: ya_commerce/ya_commerce.module:160 ya_ubercart/ya_ubercart.module:49
-msgid "Payment failed: %message"
-msgstr "Проблема с оплатой: %message"
-
-#: ya_commerce/ya_commerce.module:184 ya_ubercart/ya_ubercart.module:73
-msgid "Submit order"
-msgstr "Подтвердить заказ"
-
-#: ya_donate/ya_donate.module:8
-msgid "Access YaMoney donate settings"
+#: yamoney.admin.inc:12
+msgid "Любое использование Вами программы означает полное и безоговорочное принятие Вами условий лицензионного договора, размещенного по адресу <a href=\"https://money.yandex.ru/doc.xml?id=527132\">https://money.yandex.ru/doc.xml?id=527132</a> (далее – «Лицензионный договор»). Если Вы не принимаете условия Лицензионного договора в полном объёме, Вы не имеете права использовать программу в каких-либо целях."
 msgstr ""
 
-#: ya_donate/ya_donate.module:9
-msgid "Yandex money donate settings."
-msgstr "Настройка принимателя Яндекс.Денег"
+#: yamoney.admin.inc:16
+msgid "Allowed IPs for callbacks"
+msgstr "Список IP-адресов"
 
-#: ya_donate/ya_donate.module:12
-msgid "Access YaMoney donate block"
+#: yamoney.admin.inc:18
+msgid "The list of IP addresses which has access to payment callbacks. One per line.<br/>0.0.0.0 means allow from all."
+msgstr "Список IP-адресов, с которых будут поступать запросы от Яндекс.Денег. По одному в строке. 0.0.0.0 разрешает запросы со всех IP-адресов."
+
+#: yamoney.admin.inc:22
+msgid "Payment mode"
+msgstr "Способы оплаты"
+
+#: yamoney.admin.inc:24
+msgid "Test mode"
+msgstr "Тестовый режим"
+
+#: yamoney.admin.inc:25
+msgid "Live mode"
+msgstr "Реальный режим"
+
+#: yamoney.admin.inc:37
+msgid "Payments mode"
+msgstr "Сценарий оплаты"
+
+#: yamoney.admin.inc:39
+msgid "Kassa mode"
+msgstr "Выбор способа оплаты на стороне Яндекс.Кассы"
+
+#: yamoney.admin.inc:40
+msgid "Shop mode"
+msgstr "Выбор способа оплаты на стороне магазина"
+
+#: yamoney.admin.inc:46
+msgid "Use logo of payment button"
+msgstr "Назвать кнопку оплаты «Заплатить через Яндекс»"
+
+#: yamoney.admin.inc:56
+msgid "Enabled payment methods"
+msgstr "Включенные методы оплаты"
+
+#: yamoney.admin.inc:64
+msgid "Default payment method"
+msgstr "Метод оплаты по умолчанию"
+
+#: yamoney.admin.inc:83
+msgid "Yandex shop settings"
+msgstr "Настройки магазина"
+
+#: yamoney.admin.inc:87
+msgid "Select if you have a shop in Yandex.Money"
+msgstr "Выбрать, если маказин подключен к сервису Яндекс.Касса (по договору с Яндекс.Деньги)"
+
+#: yamoney.admin.inc:92
+msgid "Shop ID"
+msgstr "Shop ID"
+
+#: yamoney.admin.inc:93
+msgid "You shop ID. If you have any shops in you Yandex account."
+msgstr "Ваш идентификатор магазина (shopID). Выдается после заключения договора с Яндекс.Деньги."
+
+#: yamoney.admin.inc:100
+msgid "Shop SCID"
+msgstr "Витрина магазина (scid)"
+
+#: yamoney.admin.inc:107
+msgid "Shop security key"
+msgstr "Пароль магазина (shopPassword)"
+
+#: yamoney.admin.inc:108
+msgid "You shop password security key. Not you payment password."
+msgstr "Ваше секретное слово магазина (shopPassword). Должно совпадать с указанным Вами в технической анкете при заключении договора с Яндекс.Деньги."
+
+#: yamoney.admin.inc:117
+msgid "Yandex purse settings"
+msgstr "Настройка принимателя"
+
+#: yamoney.admin.inc:123
+msgid "Purse number"
+msgstr "Номер кошелька"
+
+#: yamoney.admin.inc:124
+msgid "Your Yandex.Money purse number."
+msgstr "Номер кошелька Яндекс.Денег"
+
+#: yamoney.admin.inc:132
+msgid "Pay comment"
+msgstr "Комментарий платежа"
+
+#: yamoney.admin.inc:133
+msgid "Your Yandex.Money pay comment."
+msgstr "Ваш комментарий платежа"
+
+#: yamoney.admin.inc:140
+msgid "Text for success and fail payment pages"
+msgstr "Текст для страниц успеха и отказа"
+
+#: yamoney.admin.inc:145
+msgid "Text for success page"
+msgstr "Текст для страницы успеха"
+
+#: yamoney.admin.inc:152
+msgid "Text for fail page"
+msgstr "Текст для страницы откаха"
+
+#: yamoney.admin.inc:215
+msgid "You do not choose the type of payment online!"
+msgstr "Необходимо выбрать хотя бы один метод оплаты"
+
+#: yamoney.admin.inc:226
+msgid "IP is not correct: %ip.<br/>Please insert correct server IP or insert 0.0.0.0 to default!"
 msgstr ""
-
-#: ya_donate/ya_donate.module:13
-msgid "Yandex money donate block."
-msgstr ""
-
-#: ya_donate/ya_donate.module:37
-msgid "Donate text"
-msgstr ""
-
-#: ya_donate/ya_donate.module:42 ya_donate/ya_donate.module:101
-msgid "Donate amount"
-msgstr ""
-
-#: ya_donate/ya_donate.module:43
-msgid "Leave blank if the amount entered by the user."
-msgstr ""
-
-#: ya_donate/ya_donate.module:51
-msgid "This field is not numeric!!!"
-msgstr ""
-
-#: ya_donate/ya_donate.module:60
-msgid "Yandex money donate block"
-msgstr ""
-
-#: ya_donate/ya_donate.module:102
-msgid "Enter the amount of the donation"
-msgstr ""
-
-#: ya_donate/ya_donate.module:118
-msgid "Donate payment"
-msgstr ""
-
-#: ya_ubercart/ya_ubercart.module:15
-msgid "Yandex.Money payments:"
-msgstr "Оплата через сервис Яндекс.Касса"
-
-#: ya_ubercart/ya_ubercart.module:18
-msgid "Yandex money"
-msgstr ""
-
-#: ya_ubercart/ya_ubercart.module:20
-msgid "Yandex gateway"
-msgstr ""
-
-#: ya_ubercart/ya_ubercart.module:21
-msgid "Redirect to Yandex to pay by credit card or pay terminals or e-money."
-msgstr "Перенаправление на Яндекс.Деньги для оплаты выбранным способом."
-
-#: ya_ubercart/ya_ubercart.module:86 yamoney.module:416 yamoney.module:420
-msgid "Payments for order No"
-msgstr "Платеж по заказу No"
-
-#: ya_ubercart/ya_ubercart.module:133
-msgid "You shop ID. If you have any shops in you yandex account"
-msgstr "Идентификатор магазина (shopID)"
 
 #: yamoney.module:23
 msgid "Access YaMoney transaction"
@@ -146,7 +165,7 @@ msgstr "Доступ к Yandex.Money Core"
 msgid "Access to Yandex Money API variables."
 msgstr "Доступ к настройкам Yandex.Money Core"
 
-#: yamoney.module:57
+#: yamoney.module:57 yamoney.info:0
 msgid "Yandex.Money Core"
 msgstr "Настройка модуля Яндекс.Деньги"
 
@@ -162,7 +181,7 @@ msgstr "Список транзакций модуля Яндекс.Деньги
 msgid "Yandex.Money all transactions page."
 msgstr "Страница со всеми транзакциями модуля Яндекс.Деньги"
 
-#: yamoney.module:78 transactions.inc:163
+#: yamoney.module:78
 msgid "My transactions"
 msgstr "Мои транзакции"
 
@@ -178,192 +197,58 @@ msgstr "Поздравляем!"
 msgid "Sorry!"
 msgstr "Извиняемся!"
 
-#: yamoney.module:312
+#: yamoney.module:313
 msgid "Payment from a Yandex.Money e-wallet"
 msgstr "Оплата из кошелька в Яндекс.Деньгах"
 
-#: yamoney.module:313
+#: yamoney.module:314
 msgid "Payment by any bank card"
 msgstr "Оплата с произвольной банковской карты"
 
-#: yamoney.module:314
+#: yamoney.module:315
 msgid "Payment in cash via retailers and payment kiosks"
 msgstr "Оплата наличными через кассы и терминалы"
 
-#: yamoney.module:315
+#: yamoney.module:316
 msgid "Payment from a mobile phone balance"
 msgstr "Платеж со счета мобильного телефона"
 
-#: yamoney.module:316
+#: yamoney.module:317
 msgid "Payment from a WebMoney e-wallet"
 msgstr "Оплата из кошелька в системе WebMoney"
 
-#: yamoney.module:317
+#: yamoney.module:318
 msgid "Payment via Alfa-Click"
 msgstr "Оплата через Альфа-Клик"
 
-#: yamoney.module:318
+#: yamoney.module:319
 msgid "Payment via Sberbank: payment by text messages or Sberbank Online"
 msgstr "Оплата через Сбербанк: оплата по SMS или Сбербанк Онлайн"
 
-#: yamoney.module:319
+#: yamoney.module:320
 msgid "Payment via MasterPass"
 msgstr "Оплата через MasterPass"
 
-#: yamoney.module:320
+#: yamoney.module:321
 msgid "Payment via Promsvyazbank"
 msgstr "Оплата через интернет-банк Промсвязьбанка"
 
-#: yamoney.module:321
+#: yamoney.module:322
 msgid "Payment via QIWI Wallet"
 msgstr "Оплата через QIWI Wallet"
 
-#: yamoney.module:322
+#: yamoney.module:323
 msgid "Trust payment (Qppi.ru)"
 msgstr "Оплата через доверительный платеж (Куппи.ру)"
 
-#: transactions.inc:144
-msgid "Transactions"
-msgstr "Транзакции"
+#: yamoney.module:419;425
+msgid "Payments for order No"
+msgstr "Платеж по заказу No"
 
-#: transactions.inc:178
-msgid "Id"
+#: yamoney.info:0
+msgid "Yandex.Money core module."
 msgstr ""
 
-#: transactions.inc:178
-msgid "Name"
-msgstr "Имя"
-
-#: transactions.inc:178
-msgid "Amount"
-msgstr "Сумма"
-
-#: transactions.inc:178
-msgid "Date/Time"
-msgstr "Дата/Время"
-
-#: transactions.inc:178
-msgid "Status"
-msgstr "Статус"
-
-#: transactions.inc:178
-msgid "E-mail"
-msgstr ""
-
-#: transactions.inc:178
-msgid "Order ID"
-msgstr "Номер заказа"
-
-#: transactions.inc:193
-msgid "There no transactions."
-msgstr "Список транзакций пуст."
-
-#: yamoney.admin.inc:12
-msgid "Base options"
-msgstr "Основные настройки"
-
-#: yamoney.admin.inc:16
-msgid "Allowed IPs for callbacks"
-msgstr "Список IP-адресов"
-
-#: yamoney.admin.inc:18
-msgid ""
-"The list of IP addresses which has access to payment callbacks. One per line."
-"<br/>0.0.0.0 means allow from all."
-msgstr ""
-"Список IP-адресов, с которых будут поступать запросы от Яндекс.Денег. По "
-"одному в строке. 0.0.0.0 разрешает запросы со всех IP-адресов."
-
-#: yamoney.admin.inc:22
-msgid "Payment mode"
-msgstr "Платежный режим"
-
-#: yamoney.admin.inc:24
-msgid "Test mode"
-msgstr "Тестовый режим"
-
-#: yamoney.admin.inc:25
-msgid "Live mode"
-msgstr "Реальный режим"
-
-#: yamoney.admin.inc:32
-msgid "Enabled payment methods"
-msgstr "Доступные методы оплаты"
-
-#: yamoney.admin.inc:39
-msgid "Default payment method"
-msgstr "Способ оплаты по умолчанию"
-
-#: yamoney.admin.inc:53
-msgid "Yandex shop settings"
-msgstr "Настройки магазина"
-
-#: yamoney.admin.inc:57
-msgid "Select if you have a shop in Yandex.Money"
-msgstr "Отметьте, если у Вас есть договор с Яндекс.Деньги "
-
-#: yamoney.admin.inc:62
-msgid "Shop ID"
-msgstr "Идентификатор магазина (shopID)"
-
-#: yamoney.admin.inc:63
-msgid "You shop ID. If you have any shops in you Yandex account."
-msgstr "Идентификатор магазина (shopID)"
-
-#: yamoney.admin.inc:70
-msgid "Shop SCID"
-msgstr "Витрина магазина (scid)"
-
-#: yamoney.admin.inc:77
-msgid "Shop security key"
-msgstr "Пароль магазина (shopPassword)"
-
-#: yamoney.admin.inc:78
-msgid "You shop password security key. Not you payment password."
-msgstr ""
-"Пароль магазина (shopPassword), который Вы указали при заключении договора с "
-"Яндекс.Деньги"
-
-#: yamoney.admin.inc:87
-msgid "Yandex purse settings"
-msgstr "Настройки Яндекс.Денег"
-
-#: yamoney.admin.inc:91
-msgid "Purse number"
-msgstr "Номер кошелька Яндекс.Денег"
-
-#: yamoney.admin.inc:92
-msgid "Your Yandex.Money purse number."
-msgstr "Номер кошелька Яндекс.Денег"
-
-#: yamoney.admin.inc:99
-msgid "Pay comment"
-msgstr "Комментарий платежа"
-
-#: yamoney.admin.inc:100
-msgid "Your Yandex.Money pay comment."
-msgstr "Ваш комментарий платежа"
-
-#: yamoney.admin.inc:106
-msgid "Text for success and fail payment pages"
-msgstr "Текст для страниц успеха и отказа"
-
-#: yamoney.admin.inc:111
-msgid "Text for success page"
-msgstr "Текст для страницы успеха"
-
-#: yamoney.admin.inc:118
-msgid "Text for fail page"
-msgstr "Текст для страницы откаха"
-
-#: yamoney.admin.inc:131
-msgid "You do not choose the type of payment online!"
-msgstr ""
-
-#: yamoney.admin.inc:142
-msgid ""
-"IP is not correct: %ip.<br/>Please insert correct server IP or insert "
-"0.0.0.0 to default!"
-msgstr ""
-"Неверный IP: %ip.<br/>Вставьте, пожалуйста, верный IP или значение 0.0.0.0 "
-"(по умолчанию)!"
+#: yamoney.info:0
+msgid "Yandex.Money"
+msgstr "Яндекс.Деньги"

@@ -72,7 +72,10 @@ function ya_ubercart_form($form, &$form_state, $order) {
     '#type' => 'submit',
     '#value' => t('Submit order'),
   );
-
+  $form['cms_name'] = array(
+      '#type' => 'hidden',
+      '#value' => "drupal-ubercart",
+  );
   return $form;
 }
 
@@ -82,7 +85,7 @@ function ya_ubercart_form($form, &$form_state, $order) {
  */
 function ya_ubercart_yamoney_shop_params_alter(&$params) {
   // Selected payment method
-  $params['paymentType'] = $_SESSION['pay_method'];
+  $params['paymentType'] = (variable_get('yamoney_paymode')=='shop')?$_SESSION['pay_method']:'';
   $params['shop-desc'] = t('Payments for order No') . $params['order_id'];
 }
 
@@ -111,7 +114,7 @@ function uc_payment_method_ya_ubercart($op, &$order, $form = NULL, &$form_state 
       if (count($methods) === 1) {
         $disabled = TRUE;
       }
-      if (variable_get('ya_payments_select', 1)) {
+      if (variable_get('yamoney_paymode')=='shop' && variable_get('ya_payments_select', 1)) {
         $build['pay_method'] = array(
           '#type' => 'select',
           '#title' => t('Select your payment type:'),

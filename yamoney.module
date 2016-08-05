@@ -286,6 +286,7 @@ function yamoney_check_payment() {
  * @param string $message
  */
 function yamoney_check_send_result($type, $code = 0, $message = '') {
+  if (count($_POST)==0) return;
   $attributes = array(
     'performedDatetime' => $_POST['requestDatetime'],
     'code' => $code,
@@ -390,7 +391,7 @@ function yamoney_get_shop_params(YAMoneyTransaction $transaction) {
   $params['shopFailURL'] = url('yamoney/fail', array('absolute' => TRUE));
 
   // Детали способа совершения платежа.
-  $params['paymentType'] = variable_get('yamoney_default_payment_method', YAMONEY_DEFAULT_PAYMENT_METHOD);
+  $params['paymentType'] = (variable_get('yamoney_paymode')=='shop')?variable_get('yamoney_default_payment_method', YAMONEY_DEFAULT_PAYMENT_METHOD):'';
 
   // Provide CMS name
   $params['cms_name'] = 'drupal';

@@ -10,8 +10,8 @@ function ya_commerce_commerce_payment_method_info() {
     'path' => drupal_get_path('module', 'ya_commerce') . '/images/yandex-logo.png',
     'attributes' => array('class' => array('ya-commerce-logo')),
   ));
-  $display_title = t('Yandex.Kassa') . '<br/>' . $icon;
-
+  $display_title = (variable_get('yamoney_shop', 0))?t('Yandex.Kassa'):t('Yandex.Money');
+  $display_title .= '<br/>' . $icon;
   $payment_methods['ya_commerce'] = array(
     'base' => 'ya_commerce',
     'title' => t('Yandex.Money'),
@@ -56,6 +56,7 @@ function ya_commerce_submit_form($payment_method, $pane_values, $checkout_pane, 
   if (count($methods) === 1) {
     $disabled = TRUE;
   }
+  if (variable_get('yamoney_paymode')=='kassa' && variable_get('yamoney_shop', 0)) return;
 
   $default_value = variable_get('yamoney_default_payment_method', YAMONEY_DEFAULT_PAYMENT_METHOD);
   if (isset($pane_values['payment_details']['payment_method'])) {
@@ -183,7 +184,10 @@ function ya_commerce_redirect_form($form, &$form_state, $order, $payment_method)
     '#type' => 'submit',
     '#value' => t('Submit order'),
   );
-
+  $form['cms_name'] = array(
+      '#type' => 'hidden',
+      '#value' => "drupal-commerce",
+  );
   return $form;
 }
 
