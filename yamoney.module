@@ -209,6 +209,10 @@ function yamoney_check_order() {
     yamoney_check_send_result('checkOrderResponse', YAMONEY_CHECK_RESULT_CODE_ERROR_CUSTOM, 'Invalid transaction_id provided.');
   }
 
+  if (floatval($_POST['orderSumAmount']) < floatval($transaction->amount)) {
+    yamoney_check_send_result('checkOrderResponse', YAMONEY_CHECK_RESULT_CODE_ERROR_CUSTOM, 'Invalid amount');
+  }
+
   if ($transaction->status !== YAMoneyTransaction::STATUS_IN_PROCESS) {
     yamoney_check_send_result('checkOrderResponse', YAMONEY_CHECK_RESULT_CODE_ERROR_CUSTOM,
       'Invalid transaction state: ' . $transaction->status . '. Expected: ' . YAMoneyTransaction::STATUS_IN_PROCESS . '.');
