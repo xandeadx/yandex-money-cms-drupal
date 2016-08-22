@@ -433,7 +433,6 @@ function yamoney_get_quick_params(YAMoneyTransaction $transaction) {
   $params['cms_name'] = 'drupal';
 
   drupal_alter('yamoney_quick_params', $params);
-
   return $params;
 }
 
@@ -441,23 +440,11 @@ function yamoney_get_quick_params(YAMoneyTransaction $transaction) {
  * @return string
  */
 function yamoney_get_order_submission_url() {
-  $is_test = variable_get('yamoney_mode', 'test') === 'test';
+  $is_test = (variable_get('yamoney_mode', 'test') === 'test')?'demo':'';
   if (variable_get('yamoney_shop', 0)) {
     // shop
-    if ($is_test) {
-      return 'https://demomoney.yandex.ru/eshop.xml';
-    }
-    else {
-      return 'https://money.yandex.ru/eshop.xml';
-    }
-  }
-  else {
-    // quick
-    if ($is_test) {
-      return 'https://demomoney.yandex.ru/quickpay/confirm.xml';
-    }
-    else {
-      return 'https://money.yandex.ru/quickpay/confirm.xml';
-    }
+    return 'https://'.$is_test.'money.yandex.ru/eshop.xml';
+  }else{
+    return 'https://money.yandex.ru/quickpay/confirm.xml';
   }
 }

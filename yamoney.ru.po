@@ -4,14 +4,14 @@
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
 #  yamoney.admin.inc: n/a
-#  yamoney.module: n/a
 #  yamoney.info: n/a
+#  yamoney.module: n/a
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2016-08-04 16:11+0300\n"
-"PO-Revision-Date: 2016-08-04 16:25+0300\n"
+"POT-Creation-Date: 2016-08-22 12:20+0300\n"
+"PO-Revision-Date: 2016-08-22 12:24+0300\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -21,123 +21,184 @@ msgstr ""
 "Language: ru\n"
 "X-Generator: Poedit 1.8.8\n"
 
-#: yamoney.admin.inc:11
-msgid "Base options"
-msgstr "Основные настройки"
+#: yamoney.admin.inc:13
+msgid "Работая с модулем, вы автоматически соглашаетесь с <a href=\"https://money.yandex.ru/doc.xml?id=527132\" target=\"_blank\">условиями его использования</a>."
+msgstr "Работая с модулем, вы автоматически соглашаетесь с <a href=\"https://money.yandex.ru/doc.xml?id=527132\" target=\"_blank\">условиями его использования</a>."
 
-#: yamoney.admin.inc:12
-msgid "Любое использование Вами программы означает полное и безоговорочное принятие Вами условий лицензионного договора, размещенного по адресу <a href=\"https://money.yandex.ru/doc.xml?id=527132\">https://money.yandex.ru/doc.xml?id=527132</a> (далее – «Лицензионный договор»). Если Вы не принимаете условия Лицензионного договора в полном объёме, Вы не имеете права использовать программу в каких-либо целях."
-msgstr ""
+#: yamoney.admin.inc:17
+msgid "Version: "
+msgstr "Версия модуля: "
 
-#: yamoney.admin.inc:16
+#: yamoney.admin.inc:21
 msgid "Allowed IPs for callbacks"
 msgstr "Список IP-адресов"
 
-#: yamoney.admin.inc:18
+#: yamoney.admin.inc:23
 msgid "The list of IP addresses which has access to payment callbacks. One per line.<br/>0.0.0.0 means allow from all."
 msgstr "Список IP-адресов, с которых будут поступать запросы от Яндекс.Денег. По одному в строке. 0.0.0.0 разрешает запросы со всех IP-адресов."
 
-#: yamoney.admin.inc:22
-msgid "Payment mode"
-msgstr "Способы оплаты"
+#: yamoney.admin.inc:32
+msgid "Yandex.Kassa"
+msgstr "Яндекс.Касса"
 
-#: yamoney.admin.inc:24
+#: yamoney.admin.inc:38
+msgid "Для работы с модулем нужно подключить магазин к <a target=\"_blank\" href=\"https://kassa.yandex.ru/\">Яндекс.Кассе</a>."
+msgstr "Для работы с модулем нужно подключить магазин к <a target=\"_blank\" href=\"https://kassa.yandex.ru/\">Яндекс.Кассе</a>."
+
+#: yamoney.admin.inc:42
+msgid "Включить приём платежей через Яндекс.Кассу"
+msgstr "Включить приём платежей через Яндекс.Кассу"
+
+#: yamoney.admin.inc:49
 msgid "Test mode"
 msgstr "Тестовый режим"
 
-#: yamoney.admin.inc:25
+#: yamoney.admin.inc:50
 msgid "Live mode"
 msgstr "Реальный режим"
 
-#: yamoney.admin.inc:37
-msgid "Payments mode"
-msgstr "Сценарий оплаты"
-
-#: yamoney.admin.inc:39
-msgid "Kassa mode"
-msgstr "Выбор способа оплаты на стороне Яндекс.Кассы"
-
-#: yamoney.admin.inc:40
-msgid "Shop mode"
-msgstr "Выбор способа оплаты на стороне магазина"
-
-#: yamoney.admin.inc:46
-msgid "Use logo of payment button"
-msgstr "Назвать кнопку оплаты «Заплатить через Яндекс»"
-
 #: yamoney.admin.inc:56
-msgid "Enabled payment methods"
-msgstr "Включенные методы оплаты"
+msgid "checkUrl"
+msgstr ""
 
-#: yamoney.admin.inc:64
-msgid "Default payment method"
-msgstr "Метод оплаты по умолчанию"
+#: yamoney.admin.inc:59
+msgid "Скопируйте эту ссылку в поле Check URL в настройках личного кабинета Яндекс.Кассы"
+msgstr "Скопируйте эту ссылку в поле Check URL в настройках личного кабинета Яндекс.Кассы"
 
-#: yamoney.admin.inc:83
-msgid "Yandex shop settings"
-msgstr "Настройки магазина"
+#: yamoney.admin.inc:63
+msgid "avisoUrl"
+msgstr ""
 
-#: yamoney.admin.inc:87
-msgid "Select if you have a shop in Yandex.Money"
-msgstr "Выбрать, если маказин подключен к сервису Яндекс.Касса (по договору с Яндекс.Деньги)"
+#: yamoney.admin.inc:66
+msgid "Скопируйте эту ссылку в поле Aviso URL в настройках личного кабинета Яндекс.Кассы"
+msgstr "Скопируйте эту ссылку в поле Aviso URL в настройках личного кабинета Яндекс.Кассы"
 
-#: yamoney.admin.inc:92
+#: yamoney.admin.inc:70
+msgid "successUrl/failUrl"
+msgstr ""
+
+#: yamoney.admin.inc:72
+msgid "Страницы с динамическими адресами"
+msgstr "Страницы с динамическими адресами"
+
+#: yamoney.admin.inc:73
+msgid "Включите «Использовать страницы успеха и ошибки с динамическими адресами» в настройках личного кабинета Яндекс.Кассы"
+msgstr "Включите «Использовать страницы успеха и ошибки с динамическими адресами» в настройках личного кабинета Яндекс.Кассы"
+
+#: yamoney.admin.inc:76
+msgid "<h3>Shop setting</h3>"
+msgstr "<h3>Параметры из личного кабинета Яндекс.Кассы</h3>"
+
+#: yamoney.admin.inc:80
 msgid "Shop ID"
 msgstr "Shop ID"
 
-#: yamoney.admin.inc:93
-msgid "You shop ID. If you have any shops in you Yandex account."
-msgstr "Ваш идентификатор магазина (shopID). Выдается после заключения договора с Яндекс.Деньги."
+#: yamoney.admin.inc:81
+msgid "Идентификатор магазина"
+msgstr "Идентификатор магазина"
+
+#: yamoney.admin.inc:87
+msgid "Scid"
+msgstr ""
+
+#: yamoney.admin.inc:88
+msgid "Номер витрины магазина"
+msgstr "Номер витрины магазина"
+
+#: yamoney.admin.inc:94
+msgid "ShopPassword"
+msgstr ""
+
+#: yamoney.admin.inc:95
+msgid "Секретное слово"
+msgstr "Секретное слово"
 
 #: yamoney.admin.inc:100
-msgid "Shop SCID"
-msgstr "Витрина магазина (scid)"
+msgid "Shop ID, scid, ShopPassword можно посмотреть в <a href='https://money.yandex.ru/my' target='_blank'>личном кабинете</a> после подключения Яндекс.Кассы."
+msgstr ""
 
-#: yamoney.admin.inc:107
-msgid "Shop security key"
-msgstr "Пароль магазина (shopPassword)"
+#: yamoney.admin.inc:103
+msgid "<h3>Настройка сценария оплаты</h3>"
+msgstr "<h3>Настройка сценария оплаты</h3>"
 
-#: yamoney.admin.inc:108
-msgid "You shop password security key. Not you payment password."
-msgstr "Ваше секретное слово магазина (shopPassword). Должно совпадать с указанным Вами в технической анкете при заключении договора с Яндекс.Деньги."
+#: yamoney.admin.inc:112
+msgid "Payments mode"
+msgstr "Сценарий оплаты"
 
-#: yamoney.admin.inc:117
-msgid "Yandex purse settings"
-msgstr "Настройка принимателя"
+#: yamoney.admin.inc:114
+msgid "Kassa mode"
+msgstr "Выбор способа оплаты на стороне Яндекс.Кассы"
 
-#: yamoney.admin.inc:123
+#: yamoney.admin.inc:115
+msgid "Shop mode"
+msgstr "Выбор способа оплаты на стороне магазина"
+
+#: yamoney.admin.inc:131
+msgid "Enabled payment methods"
+msgstr "Включенные методы оплаты"
+
+#: yamoney.admin.inc:139
+msgid "Default payment method"
+msgstr "Метод оплаты по умолчанию"
+
+#: yamoney.admin.inc:147 yamoney.info:0
+msgid "Yandex.Money"
+msgstr "Яндекс.Деньги"
+
+#: yamoney.admin.inc:152
+msgid "Для работы с модулем нужно <a href=\"https://money.yandex.ru/new\" target=\"_blank\">открыть кошелек</a> на Яндексе и <a href=\"https://sp-money.yandex.ru/myservices/online.xml\" target=\"_blank\">зарегистрировать приложение</a> на сайте Яндекс.Денег"
+msgstr ""
+"Для работы с модулем нужно <a href=\"https://money.yandex.ru/new\" target=\"_blank\">открыть кошелек</a> на Яндексе и <a href=\"https://sp-money.yandex.ru/myservices/online.xml\" target=\"_blank\">зарегистрировать приложение</a> на сайте Яндекс.Денег"
+
+#: yamoney.admin.inc:157
+msgid "Включить прием платежей в кошелек на Яндексе"
+msgstr "Включить прием платежей в кошелек на Яндексе"
+
+#: yamoney.admin.inc:162
+msgid "RedirectURL"
+msgstr ""
+
+#: yamoney.admin.inc:165
+msgid "Скопируйте эту ссылку в поле Redirect URL на <a href='https://sp-money.yandex.ru/myservices/online.xml' target='_blank'>странице регистрации приложения</a>"
+msgstr "Скопируйте эту ссылку в поле Redirect URL на <a href='https://sp-money.yandex.ru/myservices/online.xml' target='_blank'>странице регистрации приложения</a>"
+
+#: yamoney.admin.inc:168
+msgid "<h3>Настройки приема платежей</h3>"
+msgstr "<h3>Настройки приема платежей</h3>"
+
+#: yamoney.admin.inc:172
 msgid "Purse number"
 msgstr "Номер кошелька"
 
-#: yamoney.admin.inc:124
+#: yamoney.admin.inc:173
 msgid "Your Yandex.Money purse number."
 msgstr "Номер кошелька Яндекс.Денег"
 
-#: yamoney.admin.inc:132
+#: yamoney.admin.inc:180
 msgid "Pay comment"
 msgstr "Комментарий платежа"
 
-#: yamoney.admin.inc:133
-msgid "Your Yandex.Money pay comment."
-msgstr "Ваш комментарий платежа"
+#: yamoney.admin.inc:181
+msgid "Это название увидит пользователь"
+msgstr "Это название увидит пользователь"
 
-#: yamoney.admin.inc:140
+#: yamoney.admin.inc:189
 msgid "Text for success and fail payment pages"
 msgstr "Текст для страниц успеха и отказа"
 
-#: yamoney.admin.inc:145
+#: yamoney.admin.inc:195
 msgid "Text for success page"
 msgstr "Текст для страницы успеха"
 
-#: yamoney.admin.inc:152
+#: yamoney.admin.inc:202
 msgid "Text for fail page"
 msgstr "Текст для страницы откаха"
 
-#: yamoney.admin.inc:215
+#: yamoney.admin.inc:265
 msgid "You do not choose the type of payment online!"
 msgstr "Необходимо выбрать хотя бы один метод оплаты"
 
-#: yamoney.admin.inc:226
+#: yamoney.admin.inc:279
 msgid "IP is not correct: %ip.<br/>Please insert correct server IP or insert 0.0.0.0 to default!"
 msgstr ""
 
@@ -197,58 +258,54 @@ msgstr "Поздравляем!"
 msgid "Sorry!"
 msgstr "Извиняемся!"
 
-#: yamoney.module:313
+#: yamoney.module:317
 msgid "Payment from a Yandex.Money e-wallet"
 msgstr "Оплата из кошелька в Яндекс.Деньгах"
 
-#: yamoney.module:314
+#: yamoney.module:318
 msgid "Payment by any bank card"
 msgstr "Оплата с произвольной банковской карты"
 
-#: yamoney.module:315
+#: yamoney.module:319
 msgid "Payment in cash via retailers and payment kiosks"
 msgstr "Оплата наличными через кассы и терминалы"
 
-#: yamoney.module:316
+#: yamoney.module:320
 msgid "Payment from a mobile phone balance"
 msgstr "Платеж со счета мобильного телефона"
 
-#: yamoney.module:317
+#: yamoney.module:321
 msgid "Payment from a WebMoney e-wallet"
 msgstr "Оплата из кошелька в системе WebMoney"
 
-#: yamoney.module:318
+#: yamoney.module:322
 msgid "Payment via Alfa-Click"
 msgstr "Оплата через Альфа-Клик"
 
-#: yamoney.module:319
+#: yamoney.module:323
 msgid "Payment via Sberbank: payment by text messages or Sberbank Online"
 msgstr "Оплата через Сбербанк: оплата по SMS или Сбербанк Онлайн"
 
-#: yamoney.module:320
+#: yamoney.module:324
 msgid "Payment via MasterPass"
 msgstr "Оплата через MasterPass"
 
-#: yamoney.module:321
+#: yamoney.module:325
 msgid "Payment via Promsvyazbank"
 msgstr "Оплата через интернет-банк Промсвязьбанка"
 
-#: yamoney.module:322
+#: yamoney.module:326
 msgid "Payment via QIWI Wallet"
 msgstr "Оплата через QIWI Wallet"
 
-#: yamoney.module:323
+#: yamoney.module:327
 msgid "Trust payment (Qppi.ru)"
 msgstr "Оплата через доверительный платеж (Куппи.ру)"
 
-#: yamoney.module:419;425
+#: yamoney.module:423;429
 msgid "Payments for order No"
 msgstr "Платеж по заказу No"
 
 #: yamoney.info:0
 msgid "Yandex.Money core module."
-msgstr ""
-
-#: yamoney.info:0
-msgid "Yandex.Money"
-msgstr "Яндекс.Деньги"
+msgstr "Настройка модуля Яндекс.Деньги"
