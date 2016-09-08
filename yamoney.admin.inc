@@ -99,7 +99,7 @@ function yamoney_admin_settings() {
 	$form['yamoney_kassa_tab']['lbl_setting_end'] = array(
 		'#markup' => t("Shop ID, scid, ShopPassword можно посмотреть в <a href='https://money.yandex.ru/my' target='_blank'>личном кабинете</a> после подключения Яндекс.Кассы."),
 	);
-	$form['yamoney_kassa_tab']['lbl_setting'] = array(
+	$form['yamoney_kassa_tab']['lbl_paymode'] = array(
 		'#markup' => t('<h3>Настройка сценария оплаты</h3>'),
 	);
 	$paymode_states = array(
