@@ -5,9 +5,9 @@
  */
 function ya_commerce_commerce_payment_method_info() {
   $payment_methods = array();
-
+    $icon_name = (variable_get('yamoney_shop', 0) == 0)?'yandex-logo':'kassa-logo';
   $icon = theme('image', array(
-    'path' => drupal_get_path('module', 'ya_commerce') . '/images/yandex-logo.png',
+    'path' => drupal_get_path('module', 'ya_commerce') . '/images/'.$icon_name.'.png',
     'attributes' => array('class' => array('ya-commerce-logo')),
   ));
   $display_title = (variable_get('yamoney_shop', 0))?t('Yandex.Kassa'):t('Yandex.Money');

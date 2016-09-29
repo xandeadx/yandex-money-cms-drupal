@@ -7,13 +7,13 @@
  */
 function ya_ubercart_uc_payment_method() {
   $payment_methods = array();
-
+    $icon_name = (variable_get('yamoney_shop', 0) == 0)?'yandex-logo':'kassa-logo';
   $icon = theme('image', array(
-    'path' => drupal_get_path('module', 'ya_ubercart') . '/images/yandex-logo.png',
+    'path' => drupal_get_path('module', 'ya_ubercart') . '/images/'.$icon_name.'.png',
     'attributes' => array('class' => array('ya-ubercart-logo')),
   ));
-  $display_title = t('Yandex.Money payments:') . '<br/>' . $icon;
-
+    $display_title = (variable_get('yamoney_shop', 0))?t('Yandex.Kassa'):t('Yandex.Money');
+    $display_title .= '<br/>' . $icon;
   $payment_methods['ya_ubercart'] = array(
     'name' => t('Yandex money'),
     'title' => $display_title,

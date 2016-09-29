@@ -149,7 +149,7 @@ function yamoney_admin_settings() {
 		'#weight' => 30,
 	);
 	$form['yamoney_p2p_tab']['intro'] = array(
-		'#markup' => t('Для работы с модулем нужно <a href="https://money.yandex.ru/new" target="_blank">открыть кошелек</a> на Яндексе и <a href="https://sp-money.yandex.ru/myservices/online.xml" target="_blank">зарегистрировать приложение</a> на сайте Яндекс.Денег'),
+		//'#markup' => t('Для работы с модулем нужно <a href="https://money.yandex.ru/new" target="_blank">открыть кошелек</a> на Яндексе и <a href="https://sp-money.yandex.ru/myservices/online.xml" target="_blank">зарегистрировать приложение</a> на сайте Яндекс.Денег'),
 	);
 	$form['yamoney_p2p_tab']['yamoney_p2p'] = array(
 		'#type' => 'checkbox',
@@ -162,7 +162,7 @@ function yamoney_admin_settings() {
 		'#title' => t('RedirectURL'),
 		'#attributes' => array('disabled'=>'disabled'),
 		'#default_value' => url('yamoney/check_wallet', array('absolute' => TRUE)),
-		'#description' => t("Скопируйте эту ссылку в поле Redirect URL на <a href='https://sp-money.yandex.ru/myservices/online.xml' target='_blank'>странице регистрации приложения</a>"),
+		'#description' => t("Скопируйте эту ссылку в верхнее поле на <a href='https://sp-money.yandex.ru/myservices/online.xml' target='_blank'>странице HTTP-уведомлений</a>"),
 	);
 	$form['yamoney_p2p_tab']['lbl_setting'] = array(
 		'#markup' => t('<h3>Настройки приема платежей</h3>'),

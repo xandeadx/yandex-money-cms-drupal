@@ -156,7 +156,7 @@ msgstr "Включить прием платежей в кошелек на Ян
 
 #: yamoney.admin.inc:162
 msgid "RedirectURL"
-msgstr ""
+msgstr "Ссылка для HTTP-уведомлений"
 
 #: yamoney.admin.inc:165
 msgid "Скопируйте эту ссылку в поле Redirect URL на <a href='https://sp-money.yandex.ru/myservices/online.xml' target='_blank'>странице регистрации приложения</a>"
