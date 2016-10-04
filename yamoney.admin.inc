@@ -175,6 +175,13 @@ function yamoney_admin_settings() {
 		'#size' => 14,
 		//'#states' => $p2p_states,
 	);
+    $form['yamoney_p2p_tab']['yamoney_secret'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Секретное слово'),
+        '#description' => t('Секретное слово'),
+        '#default_value' => variable_get('yamoney_secret', ''),
+        '#size' => 17,
+    );
 	$form['yamoney_p2p_tab']['yamoney_formcomment'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Pay comment'),
