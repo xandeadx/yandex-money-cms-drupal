@@ -141,6 +141,87 @@ function yamoney_admin_settings() {
 		'#default_value' => variable_get('yamoney_default_payment_method', YAMONEY_DEFAULT_PAYMENT_METHOD),
 		'#states' => $paymode_states,
 	);
+
+    /*********** tax edit****************/
+
+    if (module_exists('commerce_tax') && module_exists('commerce_tax_ui')) {
+        $form['yamoney_kassa_tab']['yamoney_send_check'] = array(
+            '#type' => 'radios',
+            '#title' => t('Отправлять в Яндекс.Кассу данные для чеков (54-ФЗ)'),
+            '#options' => array(
+                '1' => t('Включить'),
+                '0' => t('Выключить')
+            ),
+            '#description' => 'Отправлять в Яндекс.Кассу данные для чеков (54-ФЗ) НДС',
+            '#default_value' => variable_get('yamoney_send_check', '0'),
+        );
+
+        $taxes = commerce_tax_ui_commerce_tax_rate_info();
+
+        foreach ($taxes as $tax) {
+            $form['yamoney_kassa_tab']['yamoney_kassa_tax_' . $tax['name']] = array(
+                '#type' => 'select',
+                '#title' => $tax['title'] . ' ' . t('Передавать в Яндекс.Кассу как'),
+                '#options' => array(
+                    1 => t('Без НДС'),
+                    2 => t('0%'),
+                    3 => t('10%'),
+                    4 => t('18%'),
+                    5 => t('Расчётная ставка 10/110'),
+                    6 => t('Расчётная ставка 18/118'),
+                ),
+                '#default_value' => variable_get('yamoney_kassa_tax_' . $tax['name'], 1),
+                '#description' => 'Слева — ставка НДС в вашем магазине, справа — в Яндекс.Кассе. Пожалуйста, сопоставьте их.',
+                '#states' => array(
+                    'invisible' => array(
+                        ':input[name="yamoney_send_check"]' => array('value' => '0'),
+                    ),
+                )
+            );
+        }
+    }
+
+    /*********** tax edit****************/
+
+    if (module_exists('uc_taxes')) {
+        $form['yamoney_kassa_tab']['yamoney_send_check'] = array(
+            '#type' => 'radios',
+            '#title' => t('Отправлять в Яндекс.Кассу данные для чеков (54-ФЗ)'),
+            '#options' => array(
+                '1' => t('Включить'),
+                '0' => t('Выключить')
+            ),
+            '#description' => 'Отправлять в Яндекс.Кассу данные для чеков (54-ФЗ) НДС',
+            '#default_value' => variable_get('yamoney_send_check', '0'),
+        );
+
+        $taxes = uc_taxes_rate_load();
+
+        foreach ($taxes as $tax) {
+            $form['yamoney_kassa_tab']['yamoney_kassa_tax_' . $tax->id] = array(
+                '#type' => 'select',
+                '#title' => $tax->name . ' ' . t('Передавать в Яндекс.Кассу как'),
+                '#options' => array(
+                    1 => t('Без НДС'),
+                    2 => t('0%'),
+                    3 => t('10%'),
+                    4 => t('18%'),
+                    5 => t('Расчётная ставка 10/110'),
+                    6 => t('Расчётная ставка 18/118'),
+                ),
+                '#default_value' => variable_get('yamoney_kassa_tax_' . $tax->id, 1),
+                '#description' => 'Слева — ставка НДС в вашем магазине, справа — в Яндекс.Кассе. Пожалуйста, сопоставьте их.',
+                '#states' => array(
+                    'invisible' => array(
+                        ':input[name="yamoney_send_check"]' => array('value' => '0'),
+                    ),
+                )
+            );
+        }
+    }
+
+    /*********** tax edit****************/
+
 	/* ---- */
 	$form['yamoney_p2p_tab'] = array(
 		'#type' => 'fieldset',

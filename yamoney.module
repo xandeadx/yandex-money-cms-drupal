@@ -395,7 +395,7 @@ function yamoney_get_enabled_payment_methods() {
  * @return array
  */
 function yamoney_get_order_submission_params(YAMoneyTransaction $transaction) {
-  if (variable_get('yamoney_shop', 0)) {
+    if (variable_get('yamoney_shop', 0)) {
     // shop
     $params = yamoney_get_shop_params($transaction);
   }
