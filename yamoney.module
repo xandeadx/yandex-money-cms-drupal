@@ -6,6 +6,7 @@ define('YAMONEY_CHECK_RESULT_CODE_ERROR_CUSTOM', 100);
 define('YAMONEY_CHECK_RESULT_CODE_ERROR_REQUEST', 200);
 
 define('YAMONEY_DEFAULT_PAYMENT_METHOD', 'PC');
+define('QUICK_PAY_VERSION', 2);
 
 /**
  * Implements hook_init().
@@ -397,11 +398,13 @@ function yamoney_get_enabled_payment_methods() {
 function yamoney_get_order_submission_params(YAMoneyTransaction $transaction) {
     if (variable_get('yamoney_shop', 0)) {
     // shop
-    $params = yamoney_get_shop_params($transaction);
-  }
-  else {
-    $params = yamoney_get_quick_params($transaction);
-  }
+        $params = yamoney_get_shop_params($transaction);
+    }else if (variable_get('yamoney_p2p', 0)){
+        $params = yamoney_get_quick_params($transaction);
+    } else if (variable_get('yamoney_billing_enable', 0)) {
+        $params = yamoney_get_fastPay_params($transaction);
+    }
+
 
   drupal_alter('yamoney_order_submission_params', $params);
 
@@ -481,15 +484,30 @@ function yamoney_get_quick_params(YAMoneyTransaction $transaction) {
   return $params;
 }
 
+function yamoney_get_fastPay_params(YAMoneyTransaction $transaction)
+{
+    $params = array();
+
+    $params['formId'] = variable_get('yamoney_billing_id');
+    $params['sum'] = $transaction->amount;
+    $params['narrative'] = str_replace('%order_id%', $transaction->order_id, variable_get('yamoney_billing_narrative'));
+    $params['quickPayVersion'] = QUICK_PAY_VERSION;
+    $params['fio'] = '';
+
+    drupal_alter('yamoney_fastPay_params', $params);
+    return $params;
+}
+
 /**
  * @return string
  */
 function yamoney_get_order_submission_url() {
   $is_test = (variable_get('yamoney_mode', 'test') === 'test')?'demo':'';
-  if (variable_get('yamoney_shop', 0)) {
-    // shop
+  if (variable_get('yamoney_shop')) {
     return 'https://'.$is_test.'money.yandex.ru/eshop.xml';
-  }else{
+  } else if (variable_get('yamoney_p2p')){
     return 'https://money.yandex.ru/quickpay/confirm.xml';
+  } else if (variable_get('yamoney_billing_enable')) {
+      return 'https://money.yandex.ru/fastpay/confirm';
   }
 }

@@ -12,7 +12,16 @@ function ya_ubercart_uc_payment_method() {
         'path' => drupal_get_path('module', 'ya_ubercart') . '/images/'.$icon_name.'.png',
         'attributes' => array('class' => array('ya-ubercart-logo')),
     ));
-    $display_title = (variable_get('yamoney_shop', 0))?t('Yandex.Kassa'):t('Yandex.Money');
+
+    $display_title = '';
+    if(variable_get('yamoney_shop', 0)) {
+        $display_title = t('Yandex.Kassa');
+    } else if (variable_get('yamoney_p2p', 0)) {
+        $display_title = t('Yandex.Money');
+    } else if (variable_get('yamoney_billing_enable', 0)) {
+        $display_title = t('Yandex.Billing (bank card, e-wallets)');
+    }
+
     $display_title .= '<br/>' . $icon;
     $payment_methods['ya_ubercart'] = array(
         'name' => t('Yandex money'),
@@ -54,6 +63,12 @@ function ya_ubercart_form($form, &$form_state, $order) {
         // redirect to fail page
         $cancel_url = url('yamoney/fail');
         drupal_goto($cancel_url);
+    }
+
+    if (variable_get('yamoney_billing_enable')) {
+        uc_cart_complete_sale($order);
+        uc_cart_empty($order->uid);
+        uc_order_update_status($order->order_id, 'payment_received');
     }
 
     $target_url = yamoney_get_order_submission_url();
@@ -104,17 +119,24 @@ function ya_ubercart_form($form, &$form_state, $order) {
         }
     }
 
-    if ($receipt) {
+    if (isset($receipt) && $receipt) {
         $params['receipt'] = json_encode($receipt);
     }
 
     $form = array();
     $form['#action'] = $target_url;
     foreach ($params as $key => $value) {
-        $form[$key] = array(
-            '#type' => 'hidden',
-            '#value' => $value,
-        );
+        if($key == 'fio') {
+            $form[$key] = array(
+                '#type' => 'hidden',
+                '#value' => $order->data['customer_name'],
+            );
+        } else {
+            $form[$key] = array(
+                '#type' => 'hidden',
+                '#value' => $value,
+            );
+        }
     }
     $form['actions'] = array('#type' => 'actions');
     $form['actions']['submit'] = array(
@@ -125,6 +147,7 @@ function ya_ubercart_form($form, &$form_state, $order) {
         '#type' => 'hidden',
         '#value' => "drupal-ubercart",
     );
+
     return $form;
 }
 
@@ -154,7 +177,7 @@ function ya_ubercart_yamoney_quick_params_alter(&$params) {
  * @param null $form_state
  * @return array|null
  */
-function uc_payment_method_ya_ubercart($op, &$order, $form = NULL, &$form_state = NULL) {
+function uc_payment_method_ya_ubercart($op, &$order, $form = null, &$form_state = null) {
     switch ($op) {
         case 'cart-details':
             $build = array();
@@ -173,10 +196,31 @@ function uc_payment_method_ya_ubercart($op, &$order, $form = NULL, &$form_state 
                 );
             }
             unset($_SESSION['pay_method']);
-            return $build;
+            if (variable_get('yamoney_billing_enable', 0)) {
+                $form = array();
+                $form['customer_name'] = array(
+                    '#type' => 'textfield',
+                    '#title' => t('Payer\'s full name'),
+                    '#required' => true,
+                );
+
+                return $form;
+            } else {
+                return $build;
+            }
+
         case 'cart-process':
             if (isset($form_state['values']['panes']['payment']['details']['pay_method'])) {
                 $_SESSION['pay_method'] = $form_state['values']['panes']['payment']['details']['pay_method'];
+            }
+
+            if(isset($form_state['values']['panes']['payment']['details']['customer_name'])) {
+                $customerName = $form_state['values']['panes']['payment']['details']['customer_name'];
+                if( $customerName
+                    && !preg_match('/^([а-яА-Яa-zA-ZыЫчЧёЁ]+)\s+([а-яА-Яa-zA-ZыЫчЧёЁ]+)\s+([а-яА-Яa-zA-ZыЫчЧёЁ]+$)/i', $customerName, $matches)
+                ) {
+                    form_set_error('customer_name', 'Ф.И.О. плательщика введено не верно.');
+                }
             }
             return;
         case 'settings':
@@ -185,6 +229,17 @@ function uc_payment_method_ya_ubercart($op, &$order, $form = NULL, &$form_state 
                 '#value' => t('You shop ID. If you have any shops in you yandex account'),
             );
             return $form;
+
+        case 'order-save':
+            if(isset($_POST['panes']['payment']['details']['customer_name'])) {
+                $customerName = $_POST['panes']['payment']['details']['customer_name'];
+                $order->data['customer_name'] = $customerName;
+                db_update('uc_orders')
+                    ->fields(array('data' => serialize($order->data)))
+                    ->condition('order_id', $order->order_id)
+                    ->execute();
+            }
+            break;
     }
 }
 

@@ -309,3 +309,36 @@ msgstr "Платеж по заказу No"
 #: yamoney.info:0
 msgid "Yandex.Money core module."
 msgstr "Настройка модуля Яндекс.Деньги"
+
+msgid "Yandex.Billing"
+msgstr "Яндекс.Платежка"
+
+msgid "This is a payment form for your site. It allows for accepting payments to your company account from cards and Yandex.Money e-wallets without a contract. To set it up, you need to provide the Yandex.Billing identifier: we will send it via email after you <a href='https://money.yandex.ru/fastpay'>create a form in construction kit.</a>"
+msgstr "Это платежная форма на ваш сайт. Позволяет принимать платежи на счет компании — с карт или из кошельков Яндекс.Денег, без договора. Для настройки нужен идентификатор Платежки: он придёт в письме, <a href='https://money.yandex.ru/fastpay'> когда вы соберете форму в конструкторе.</a>"
+
+msgid "Activate payments via Yandex.Billing"
+msgstr "Включить прием платежей через Платежку"
+
+msgid "Form ID"
+msgstr "ID формы"
+
+msgid "Yandex.Billing"
+msgstr "Яндекс.Платежка"
+
+msgid "Payment purpose"
+msgstr "Назначение платежа"
+
+msgid "Payment purpose is added to the payment order: specify whatever will help identify the order paid via Yandex.Billing"
+msgstr "Назначение будет в платежном поручении: напишите в нем всё, что поможет отличить заказ, который оплатили через Платежку"
+
+msgid "Order status shows the payment result is unknown: you can only learn whether the client made payment or not from an email notification or in your bank"
+msgstr "Статус должен показать, что результат платежа неизвестен: заплатил клиент или нет, вы можете узнать только из уведомления на электронной почте или в своем банке"
+
+msgid "Order No. %order_id% Payment via Yandex.Billing"
+msgstr "Номер заказа %order_id% Оплата через Яндекс.Платежку"
+
+msgid "Yandex.Billing (bank card, e-wallets)"
+msgstr "Яндекс.Платежка (банковские карты, кошелек)"
+
+msgid "Payer's full name"
+msgstr "Ф.И.О. плательщика "

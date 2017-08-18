@@ -10,7 +10,16 @@ function ya_commerce_commerce_payment_method_info() {
     'path' => drupal_get_path('module', 'ya_commerce') . '/images/'.$icon_name.'.png',
     'attributes' => array('class' => array('ya-commerce-logo')),
   ));
-  $display_title = (variable_get('yamoney_shop', 0))?t('Yandex.Kassa'):t('Yandex.Money');
+
+  $display_title = '';
+  if(variable_get('yamoney_shop', 0)) {
+    $display_title = t('Yandex.Kassa');
+  } else if (variable_get('yamoney_p2p', 0)) {
+    $display_title = t('Yandex.Money');
+  } else if (variable_get('yamoney_billing_enable', 0)) {
+    $display_title = t('Yandex.Billing (bank card, e-wallets)');
+  }
+
   $display_title .= '<br/>' . $icon;
   $payment_methods['ya_commerce'] = array(
     'base' => 'ya_commerce',
@@ -70,59 +79,98 @@ function ya_commerce_submit_form($payment_method, $pane_values, $checkout_pane, 
 
   switch ($payment_method['settings']['widget']) {
     case 'select':
-      $form['payment_method'] = array(
-        '#type' => 'select',
-        '#title' => t('Select your payment type:'),
-        '#default_value' => $default_value,
-        '#options' => $methods,
-        '#disabled' => $disabled,
-      );
+        if (variable_get('yamoney_billing_enable')) {
+            $form['customer_name'] = array(
+                '#type' => 'textfield',
+                '#title' => t('Payer\'s full name'),
+                '#required' => true,
+            );
+        } else {
+            $form['payment_method'] = array(
+                '#type' => 'select',
+                '#title' => t('Select your payment type:'),
+                '#default_value' => $default_value,
+                '#options' => $methods,
+                '#disabled' => $disabled,
+            );
+        }
+
       break;
 
     case 'radios':
-      $options = array();
-      foreach ($methods as $key => $title) {
-        $options[$key] = '<span class="ya-commerce__method ya-commerce__method_'.$key.'">'.$title.'</span>';
-      }
-      $form['payment_method'] = array(
-        '#type' => 'radios',
-        '#title' => t('Select your payment type:'),
-        '#default_value' => $default_value,
-        '#options' => $options,
-        '#disabled' => $disabled,
-      );
+        if (variable_get('yamoney_billing_enable')) {
+            $form['customer_name'] = array(
+                '#type' => 'textfield',
+                '#title' => t('Payer\'s full name'),
+                '#required' => true,
+            );
+        } else {
+            $options = array();
+            foreach ($methods as $key => $title) {
+                $options[$key] = '<span class="ya-commerce__method ya-commerce__method_'.$key.'">'.$title.'</span>';
+            }
+            $form['payment_method'] = array(
+                '#type' => 'radios',
+                '#title' => t('Select your payment type:'),
+                '#default_value' => $default_value,
+                '#options' => $options,
+                '#disabled' => $disabled,
+            );
+        }
+
       break;
 
     case 'images':
-      $options = array();
-      $path = drupal_get_path('module', 'ya_commerce') . '/images/';
-      foreach ($methods as $key => $title) {
-        $options[$key] = '';
+        if (variable_get('yamoney_billing_enable')) {
+            $form['customer_name'] = array(
+                '#type' => 'textfield',
+                '#title' => t('Payer\'s full name'),
+                '#required' => true,
+            );
+        } else {
+            $options = array();
+            $path = drupal_get_path('module', 'ya_commerce') . '/images/';
+            foreach ($methods as $key => $title) {
+                $options[$key] = '';
 
-        $options[$key] = '<span class=" ya-commerce__method_'.$key.'">';
+                $options[$key] = '<span class=" ya-commerce__method_'.$key.'">';
 
-        $options[$key] = theme('image', array(
-            'path' => $path . 'icon-'.$key.'.png',
-            'attributes' => array(
-              'class' => array('ya-commerce__method-icon')
-            ),
-          ));
+                $options[$key] = theme('image', array(
+                    'path' => $path . 'icon-'.$key.'.png',
+                    'attributes' => array(
+                        'class' => array('ya-commerce__method-icon')
+                    ),
+                ));
 
-        $options[$key] .= '<span class="ya-commerce__method-title">'.$title.'</span>';
+                $options[$key] .= '<span class="ya-commerce__method-title">'.$title.'</span>';
 
-        $options[$key] .= '</span>';
-      }
-      $form['payment_method'] = array(
-        '#type' => 'radios',
-        '#title' => t('Select your payment type:'),
-        '#default_value' => $default_value,
-        '#options' => $options,
-        '#disabled' => $disabled,
-      );
+                $options[$key] .= '</span>';
+            }
+            $form['payment_method'] = array(
+                '#type' => 'radios',
+                '#title' => t('Select your payment type:'),
+                '#default_value' => $default_value,
+                '#options' => $options,
+                '#disabled' => $disabled,
+            );
+        }
       break;
   }
 
   return $form;
+}
+
+function ya_commerce_submit_form_validate($payment_method, $pane_form, $pane_values, $order, $form_parents = array())
+{
+    if(isset($pane_values['customer_name'])) {
+        $customerName = $pane_values['customer_name'];
+        if( $customerName
+            && !preg_match('/^([а-яА-Яa-zA-ZыЫчЧёЁ]+)\s+([а-яА-Яa-zA-ZыЫчЧёЁ]+)\s+([а-яА-Яa-zA-ZыЫчЧёЁ]+$)/i', $customerName, $matches)
+        ) {
+            form_set_error('customer_name', 'Ф.И.О. плательщика введено не верно.');
+            return false;
+        }
+    }
 }
 
 /**
@@ -246,10 +294,17 @@ function ya_commerce_redirect_form($form, &$form_state, $order, $payment_method)
   $form = array();
   $form['#action'] = $target_url;
   foreach ($params as $key => $value) {
-    $form[$key] = array(
-      '#type' => 'hidden',
-      '#value' => $value,
-    );
+      if($key == 'fio') {
+          $form[$key] = array(
+              '#type' => 'hidden',
+              '#value' => $order->data['ya_commerce']['customer_name'],
+          );
+      } else {
+          $form[$key] = array(
+              '#type' => 'hidden',
+              '#value' => $value,
+          );
+      }
   }
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(

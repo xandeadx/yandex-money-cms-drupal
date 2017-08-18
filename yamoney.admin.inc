@@ -230,7 +230,7 @@ function yamoney_admin_settings() {
 		'#weight' => 30,
 	);
 	$form['yamoney_p2p_tab']['intro'] = array(
-		//'#markup' => t('Для работы с модулем нужно <a href="https://money.yandex.ru/new" target="_blank">открыть кошелек</a> на Яндексе и <a href="https://sp-money.yandex.ru/myservices/online.xml" target="_blank">зарегистрировать приложение</a> на сайте Яндекс.Денег'),
+		'#markup' => t('Для работы с модулем нужно <a href="https://money.yandex.ru/new" target="_blank">открыть кошелек</a> на Яндексе и <a href="https://sp-money.yandex.ru/myservices/online.xml" target="_blank">зарегистрировать приложение</a> на сайте Яндекс.Денег'),
 	);
 	$form['yamoney_p2p_tab']['yamoney_p2p'] = array(
 		'#type' => 'checkbox',
@@ -292,6 +292,42 @@ function yamoney_admin_settings() {
 		'#format' => $fail['format'] ? $fail['format'] : '',
 	);
 	$form['#submit'][]='send_statistics';
+
+	/** Fast Pay */
+
+    $form['yamoney_billing_tab'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Yandex.Billing'),
+        '#group' => 'vertical_tabs',
+        '#weight' => 50,
+    );
+
+    $form['yamoney_billing_tab']['intro'] = array(
+        '#markup' => t('This is a payment form for your site. It allows for accepting payments to your company account from cards and Yandex.Money e-wallets without a contract. To set it up, you need to provide the Yandex.Billing identifier: we will send it via email after you <a href=\'https://money.yandex.ru/fastpay\'>create a form in construction kit.</a>'),
+    );
+
+    $form['yamoney_billing_tab']['yamoney_billing_enable'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Activate payments via Yandex.Billing'),
+        '#attributes' => array('id'=>'billing-checkbox'),
+        '#default_value' => variable_get('yamoney_billing_enable'),
+    );
+
+    $form['yamoney_billing_tab']['yamoney_billing_id'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Yandex.Billing\'s identifier'),
+        '#default_value' => variable_get('yamoney_billing_id', ''),
+        '#size' => 30,
+    );
+
+    $form['yamoney_billing_tab']['yamoney_billing_narrative'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Payment purpose'),
+        '#description' => t('Payment purpose is added to the payment order: specify whatever will help identify the order paid via Yandex.Billing'),
+        '#default_value' => variable_get('yamoney_billing_narrative', t('Order No. %order_id% Payment via Yandex.Billing')),
+        '#size' => 30,
+    );
+
 	return system_settings_form($form);
 }
 /**
@@ -370,4 +406,10 @@ function yamoney_admin_settings_validate($form, &$form_state) {
 			}
 		}
 	}
+}
+
+function getUcOrderStatuses()
+{
+    $query = db_query("SELECT * FROM {uc_order_statuses}");
+    return $query->fetchAllKeyed();
 }
