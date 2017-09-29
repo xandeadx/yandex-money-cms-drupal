@@ -283,7 +283,7 @@ function generateReceipt($order, $order_wrapper)
 {
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'YandexMoneyReceipt.php';
 
-    $amountTotal = $order_wrapper->commerce_order_total->amount->value();
+    $order_total = $order_wrapper->commerce_order_total->value();
     $receipt = new YandexMoneyReceipt();
     $receipt->setCustomerContact($order->mail);
 
@@ -305,11 +305,7 @@ function generateReceipt($order, $order_wrapper)
             && variable_get('yamoney_kassa_tax_' . $tax_id) ? variable_get('yamoney_kassa_tax_' . $tax_id)
                 : YandexMoneyReceipt::DEFAULT_TAX_RATE_ID
             );
-            $amount = getPriceByData(
-                    $product->commerce_price['und'][0]['amount'],
-                    $product->commerce_price['und'][0]['currency_code']
-                );
-
+            $amount = commerce_currency_amount_to_decimal($product->commerce_price['und'][0]['amount'], $product->commerce_price['und'][0]['currency_code']);
             $receipt->addItem($product->title, $amount, $quantity, $tax);
         }
 
@@ -322,7 +318,7 @@ function generateReceipt($order, $order_wrapper)
             $receipt->addShipping('Доставка', $amount, YandexMoneyReceipt::DEFAULT_TAX_RATE_ID);
         }
     }
-    return $receipt->normalize($amountTotal)->getJson();
+    return $receipt->normalize(commerce_currency_amount_to_decimal($order_total['amount'], $order_total['currency_code']))->getJson();
 }
 
 /**
